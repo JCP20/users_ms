@@ -13,13 +13,12 @@ services:
       - POSTGRES_PASSWORD=password
   api:
     container_name: users_ms
-    image: spring-boot-api-tutorial-img
+    image:  juli/javaapp:latest
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     ports:
       - 8080:8080
-    restart: always
 
 volumes:
   postgres_data:

@@ -13,17 +13,16 @@ RUN mvn dependency:go-offline
 # Copy the rest of the application source code
 COPY src ./src
 
-# Build the application using Maven
-RUN mvn package
+
 
 # Create a new image with the JAR file and OpenJDK
-FROM adoptopenjdk:17-jre-hotspot
+FROM adoptopenjdk:11-jre-hotspot
 
 # Set the working directory in the container
 WORKDIR /app
 
 # Copy the JAR file from the build stage to the container
-COPY --from=build /app/target/Users.jar ./app.jar
+COPY . .
 
 # Expose the application's port (adjust if necessary)
 EXPOSE 8080
